@@ -179,7 +179,7 @@ def _safe_secret(key: str, default: str = "") -> str:
     try:
         return st.secrets[key]
     except Exception:
-        return os.environ.get(key, default)
+        return default
 
 SUPABASE_TABLE = _safe_secret("SUPABASE_TABLE", "Leaderboard NotFreeport")
 SUPABASE_ID_FIELD = _safe_secret("SUPABASE_ID_FIELD", "id")
@@ -624,3 +624,4 @@ st.markdown('<div class="section-title">Log / Laporan</div>', unsafe_allow_html=
 with st.container(border=True):
     for entry in reversed(st.session_state.logs[-150:]):
         st.write("•", entry)
+    
